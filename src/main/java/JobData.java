@@ -74,9 +74,12 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-
-            if (aValue.contains(value)) {
+           //made case insensitive
+            if (aValue != null && aValue.toUpperCase().contains(value.toUpperCase())) {
                 jobs.add(row);
+
+            //if (aValue.contains(value)) {
+                //jobs.add(row);
             }
         }
 
@@ -95,8 +98,17 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> row : allJobs) {
+            if (row.toString().toUpperCase().contains(value.toUpperCase())) {
+                jobs.add(row);
+            }
+        }
+
+        return jobs;
     }
+
 
     /**
      * Read in data from a CSV file and store it in a list
